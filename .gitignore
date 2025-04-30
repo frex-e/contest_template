@@ -1,8 +1,2 @@
-*
-
-!update_template.sh
-!.gitignore
-!template.cpp
-!contest_template/
-!contest_template/**/*
-
+**/out/
+.vscode/
