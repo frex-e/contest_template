@@ -3,6 +3,7 @@
 
 using namespace std;
 
+// Number Theory
 // Returns {x,y,gcd} where xa + yb = gcd
 array<int,3> gcd_ext(int a,int b) {
     auto oa=a,ob=b;
@@ -16,7 +17,6 @@ array<int,3> gcd_ext(int a,int b) {
     return {x,y,b};
 }
 
-
 int inv(int a, int m) {
   auto [x,y,g] = gcd_ext(a, m);
   if (g != 1) {
@@ -29,6 +29,7 @@ int inv(int a, int m) {
   }
 }
 
+// Returns {solution, modulo}
 pair<int,int> linear_congruence(int a, int b, int n) {
     int d;
     if ((d = gcd(a,n)) != 1) {
@@ -69,41 +70,4 @@ struct ChineseRemainder {
 
 signed main() {
 	cin.tie(NULL)->sync_with_stdio(false);
-
-	int t; cin >> t;
-
-	while(t--) {
-		int n, x,y,vx,vy; cin >> n >> x >> y >> vx >> vy;
-
-		int g = gcd(vx,vy);
-		vx /= g;
-		vy /= g;
-
-		auto [a1, n1] = linear_congruence(vx,n - x, n);
-		auto [a2, n2] = linear_congruence(vy,n - y, n);
-
-		if (a1 == -1 or a2 == -1) {
-			cout << "-1\n";
-			continue;
-		}
-
-		ChineseRemainder crt;
-		crt.add(a1,n1);
-		crt.add(a2,n2);
-
-		if (crt.m == -1) {
-			cout << "-1" << '\n';
-		} else {
-			int solution = crt.a;
-
-			int tx = (x + vx*solution)/n;
-			int ty = (y + vy*solution)/n;
-	
-			cout << (tx - 1) + (ty - 1) + (tx + ty)/2 + abs(tx - ty)/2 << '\n';
-		}
-
-	}
-
 }
-
-
