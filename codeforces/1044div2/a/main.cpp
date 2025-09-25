@@ -15,13 +15,6 @@ int main() {
 	
 	int t; cin >> t;
 	while(t--) {
-		int n; cin >> n;
-		vector<ll> arr(n);
-	
-		rep(i,0,n) cin >> arr[i];
-	
-		for(auto a : arr)
-			cout << a << endl;
-			e++;
+		
 	}
 }
